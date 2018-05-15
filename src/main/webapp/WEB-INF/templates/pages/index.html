@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<!-- include html_head-->
+<head th:replace="common/html_head :: head"/>
+
+<body>
+
+    <!-- include header-->
+    <header th:replace="common/header :: header"/>
+
+    <!--include top_navi-->
+    <nav th:replace="common/nav :: nav"/>
+
+    <!--include main-->
+    <div th:include="common/main :: main"/>
+
+    <!--include footer-->
+    <div th:include="common/footer :: footer" class="container-fluid footer"/>
+
+</body>
+
+
+</html>

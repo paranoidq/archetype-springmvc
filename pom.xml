@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>me.archetype</groupId>
+    <artifactId>springmvc</artifactId>
+    <version>1.0.0</version>
+
+
+    <!--打包方式-->
+    <packaging>war</packaging>
+    <description></description>
+    <developers>
+        <developer>
+            <name>Wei Qian</name>
+            <email>paranoid_qian@163.com</email>
+        </developer>
+    </developers>
+    <contributors>
+        <contributor></contributor>
+    </contributors>
+    <url></url>
+    <organization>
+        <name>Wei Qian</name>
+        <url>paranoid_qian@163.com</url>
+    </organization>
+    <inceptionYear>2018</inceptionYear>
+
+
+    <!--1. profile配置. Usage: mvn xxx -P[dev|test\prod]-->
+    <profiles>
+        <!--开发profile-->
+        <profile>
+            <id>dev</id>
+            <!--默认激活prod-->
+            <activation><activeByDefault>true</activeByDefault></activation>
+            <properties>
+                <profile.active>dev</profile.active>
+            </properties>
+        </profile>
+
+        <!--测试profile-->
+        <profile>
+            <id>test</id>
+            <properties>
+                <profile.active>test</profile.active>
+            </properties>
+
+            <dependencies>
+
+            </dependencies>
+        </profile>
+
+        <!--生产profile-->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profile.active>prod</profile.active>
+            </properties>
+        </profile>
+
+        <!--war profile，仅在打包war时激活-->
+        <profile>
+            <id>war</id>
+            <activation>
+                <!--当packaging为war时激活该profile，可主动激活：mvn xxx -Pwar-->
+                <property>
+                    <name>${project.packaging}</name>
+                    <value>war</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!--war打包插件-->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>${plugin.war.version}</version>
+                        <configuration>
+                            <webappDirectory>${project.basedir}/src/main/webapp</webappDirectory>
+                            <webXml>${project.basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
+                            <!-- 配置web相关资源, 如jsp, img, js, css等 -->
+                            <webResources>
+                                <resource>
+                                    <!-- Relative to the pom.xml directory -->
+                                    <directory>${basedir}/src/main/webapp/WEB-INF/jsp</directory>
+                                    <excludes>
+                                        <exclude>exclude.jsp</exclude>
+                                    </excludes>
+                                    <!-- 必须指定targetPath, 否则会build到${basedir}目录下 -->
+                                    <targetPath>WEB-INF/jsp</targetPath>
+                                </resource>
+                            </webResources>
+
+                            <!-- webapp目录下编译时忽略的文件(夹) -->
+                            <warSourceExcludes>WEB-INF/excludes/**,</warSourceExcludes>
+                            <!-- webapp目录下打包时忽略的文件(夹) -->
+                            <packagingExcludes>WEB-INF/excludes/**,</packagingExcludes>
+
+                            <packagingIncludes>
+                            </packagingIncludes>
+
+                            <packagingExcludes>
+                            </packagingExcludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
+
+    <!--2. 配置参数-->
+    <properties>
+        <!--待定参数-->
+        <!--打包输出名-->
+        <project.finalName>mvc-app</project.finalName>
+        <project.license>mit</project.license>
+
+
+        <!--常用参数 start-->
+
+        <!--编译配置-->
+        <compile.source.jdk>1.8</compile.source.jdk>
+        <compile.target.jdk>1.8</compile.target.jdk>
+        <compile.encoding>UTF-8</compile.encoding>
+
+        <!--常用参数 end-->
+
+
+
+
+        <!--插件版本-->
+        <plugin.compile.version>2.3.2</plugin.compile.version>
+        <plugin.dependency.version>2.8</plugin.dependency.version>
+        <plugin.resources.version>3.1.0</plugin.resources.version>
+        <plugin.archetype.version>3.0.1</plugin.archetype.version>
+        <plugin.war.version>2.1.1</plugin.war.version>
+        <plugin.license.version>1.9</plugin.license.version>
+
+
+        <!--依赖版本 start-->
+        <commons-lang.version>2.6</commons-lang.version>
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <commons-dbcp2.version>2.1.1</commons-dbcp2.version>
+        <commons-pool2.version>2.4.2</commons-pool2.version>
+        <commons-codec.version>1.10</commons-codec.version>
+        <commons-fileupload.version>1.2.1</commons-fileupload.version>
+
+        <log4j2.version>2.10.0</log4j2.version>
+        <slf4j-api.version>1.7.25</slf4j-api.version>
+        <disruptor.version>3.2.0</disruptor.version>
+
+        <servlet.version>3.1.0</servlet.version>
+        <spring.version>4.3.12.RELEASE</spring.version>
+        <aspectjweaver.version>1.5.4</aspectjweaver.version>
+
+        <dep.mysql-connector>5.1.43</dep.mysql-connector>
+
+        <dep.mybatis>3.4.5</dep.mybatis>
+        <dep.mybatis-spring>1.3.1</dep.mybatis-spring>
+
+        <dep.thymeleaf>3.0.8.RELEASE</dep.thymeleaf>
+        <dep.unbescape>1.1.5.RELEASE</dep.unbescape>
+
+        <junit.version>4.12</junit.version>
+        <!--依赖版本 end-->
+
+    </properties>
+
+
+
+    <!--3. 依赖配置-->
+    <dependencies>
+
+    <!--常用工具依赖-->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons-lang.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>${commons-dbcp2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons-pool2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons-fileupload.version}</version>
+        </dependency>
+
+    <!--日志依赖-->
+        <!--log4j2-api-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <!--log4j2-core-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <!--slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
+        </dependency>
+        <!--log4j2 slf4j binding-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <!--log4j2 commons-logging binding-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jcl</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <!--如需使用异步日志，需要包含disruptor依赖-->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>${disruptor.version}</version>
+        </dependency>
+        <!--log4j-web-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>${log4j2.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+
+
+    <!--spring web相关依赖-->
+        <!--servlet3.1-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+        </dependency>
+        <!--spring webmvc-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!--spring jdbc-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!--spring context support-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!--aspectj-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectjweaver.version}</version>
+        </dependency>
+
+    <!-- mysql jdbc -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${dep.mysql-connector}</version>
+        </dependency>
+
+    <!-- mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${dep.mybatis}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${dep.mybatis-spring}</version>
+        </dependency>
+
+    <!-- thymeleaf -->
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf</artifactId>
+            <version>${dep.thymeleaf}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring4</artifactId>
+            <version>${dep.thymeleaf}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.unbescape</groupId>
+            <artifactId>unbescape</artifactId>
+            <version>${dep.unbescape}</version>
+        </dependency>
+
+
+
+    <!--测试依赖-->
+        <!--junit-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+
+
+    <!--4. 构建配置-->
+    <build>
+
+        <!--4.1 基本配置-->
+        <!-- 编译输出目录, 默认值不建议修改 -->
+        <directory>${project.basedir}/target</directory>
+        <!-- 源码目录 -->
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <!-- 测试源码目录 -->
+        <testSourceDirectory>src/main/java</testSourceDirectory>
+        <!-- 源码输出目录 -->
+        <outputDirectory>target/classes</outputDirectory>
+        <!-- 测试源码输出目录 -->
+        <testOutputDirectory>target/test-classes</testOutputDirectory>
+        <!-- 构建项目名称, 默认值 ${project.artifactId}-${project.version} -->
+        <finalName>${project.finalName}</finalName>
+
+
+        <filters>
+        </filters>
+
+        <!-- 描述了项目相关的资源路径列表，例如和项目相关的属性文件，这些资源被包含在最终的打包文件里 -->
+        <resources>
+            <resource>
+                <!--根据profile.active选择激活不同的配置文件-->
+                <directory>${project.basedir}/src/main/resources/config/${profile.active}</directory>
+                <!--开启配置文件过滤, 配置文件可引用maven属性-->
+                <filtering>true</filtering>
+                <targetPath>${project.basedir}/target/classes/config</targetPath>
+                <includes>
+                    <!--包含文件-->
+                </includes>
+                <excludes>
+                    <exclude>excludes/**.*</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <!-- 描述了项目相关的测试资源路径列表，例如和项目相关的属性文件，这些资源被包含在最终的打包文件里 -->
+        <testResources>
+            <testResource>
+                <directory>${project.basedir}/src/test/resources</directory>
+            </testResource>
+        </testResources>
+
+
+        <!--4.2 插件配置-->
+        <plugins>
+            <!--常用插件 start-->
+
+            <!--编译插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${plugin.compile.version}</version>
+                <configuration>
+                    <source>${compile.source.jdk}</source>
+                    <target>${compile.target.jdk}</target>
+                    <encoding>${compile.encoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!--依赖插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${plugin.dependency.version}</version>
+            </plugin>
+
+            <!--资源处理插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${plugin.resources.version}</version>
+                <configuration>
+                    <encoding>${compile.encoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!--archetype插件-->
+            <plugin>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+                <version>${plugin.archetype.version}</version>
+                <configuration>
+
+                </configuration>
+            </plugin>
+
+            <!--license生成插件-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>${plugin.license.version}</version>
+                <configuration>
+                    <verbose>false</verbose>
+                    <includes>
+                        <includes>**/*.java</includes>
+                    </includes>
+                    <licenseName>${project.license}</licenseName>
+                    <encoding>${compile.encoding}</encoding>
+                    <processStartTag>========================LICENSE_START=================================</processStartTag>
+                    <processEndTag>=========================LICENSE_END==================================</processEndTag>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-license-headers</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <licenseName>${project.license}</licenseName>
+                            <roots>
+                                <root>src/main/java</root>
+                                <root>src/test/java</root>
+                            </roots>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--常用插件 end-->
+
+
+            <!--其他插件 start-->
+
+
+            <!--其他插件 end-->
+        </plugins>
+
+
+        <!--4.3 插件管理配置，当该项目作为parent时可使用，子模块的公共插件提升到父模块，但子模块必须显示声明。父模块除版本号确定外，不会自动导入pluginManagement中的插件-->
+        <pluginManagement>
+
+        </pluginManagement>
+
+    </build>
+
+
+
+    <!--5 依赖管理配置，当该项目作为parent时可使用，子模块的公共依赖提升到父模块，但子模块必须显示声明。父模块除版本号确定外，不会自动导入dependencyManagement中的依赖-->
+    <dependencyManagement>
+
+    </dependencyManagement>
+
+
+</project>

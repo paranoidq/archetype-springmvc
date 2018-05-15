@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <!-- TODO: 此处应改为引用一个统一配置参数，便于修改 -->
+    <context-param>
+        <param-name>contextPath</param-name>
+        <param-value>/springmvc-archetype</param-value>
+    </context-param>
+
+    <!-- 配置log4j2.xml配置文件的位置 -->
+    <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <param-value>classpath:log4j2.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+    </listener>
+
+    <!-- Spring 防内存溢出监听器 -->
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+
+
+    <!--&lt;!&ndash; spring security配置 &ndash;&gt;-->
+    <!--<filter>-->
+        <!--<filter-name>springSecurityFilterChain</filter-name>-->
+        <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>springSecurityFilterChain</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
+    <!-- 字符集过滤器 -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!-- session 监听器 -->
+    <listener>
+        <description>session监听器</description>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+    </listener>
+
+
+    <!-- 配置DispatcherServlet前端控制器 -->
+    <servlet>
+        <servlet-name>spring-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 关联DispatcherServlet配置文件-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:config/spring-dispatcher-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!-- 配置DispatcherServlet拦截的URL -->
+    <servlet-mapping>
+        <servlet-name>spring-dispatcher</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- 配置applicationContext，如果不配置，默认在WEB-INF目录下寻找 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:config/applicationContext-all.xml, classpath:config/spring-security.xml</param-value>
+    </context-param>
+
+    <!-- 配置应用会话 -->
+    <session-config>
+        <!-- 配置session超时时间，分钟 -->
+        <session-timeout>30</session-timeout>
+        <!-- 关闭URL会话跟踪，强制让session的JSESSIONID写入COOKIE，而不是URL参数，避免安全问题 -->
+        <tracking-mode>COOKIE</tracking-mode>
+        <cookie-config>
+            <!-- 配置cookie默认超时时间，秒-->
+            <max-age>3600</max-age>
+            <!-- 确保cookie不会被客户端脚本劫持 -->
+            <http-only>true</http-only>
+        </cookie-config>
+    </session-config>
+
+
+    <welcome-file-list>
+        <welcome-file>welcome.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>
