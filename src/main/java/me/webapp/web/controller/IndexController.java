@@ -1,6 +1,5 @@
 package me.webapp.web.controller;
 
-import me.webapp.common.constants.web.ContentType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class IndexController {
 
-    @RequestMapping(value = "/hello", produces = "text/plain; charset=utf-8")
+    @RequestMapping(value = "/hello", produces = "text/plain; charset=utf-8", consumes = "*/*")
     @ResponseBody
     public String hello() {
         return "hello world";
