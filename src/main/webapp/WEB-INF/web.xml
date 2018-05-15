@@ -8,13 +8,13 @@
     <!-- TODO: 此处应改为引用一个统一配置参数，便于修改 -->
     <context-param>
         <param-name>contextPath</param-name>
-        <param-value>/springmvc-archetype</param-value>
+        <param-value>/springmvc</param-value>
     </context-param>
 
     <!-- 配置log4j2.xml配置文件的位置 -->
     <context-param>
         <param-name>log4jConfiguration</param-name>
-        <param-value>classpath:log4j2.xml</param-value>
+        <param-value>classpath:config/log4j2.xml</param-value>
     </context-param>
     <listener>
         <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
@@ -51,11 +51,11 @@
     </filter-mapping>
 
 
-    <!-- session 监听器 -->
-    <listener>
-        <description>session监听器</description>
-        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
-    </listener>
+    <!--&lt;!&ndash; session 监听器 &ndash;&gt;-->
+    <!--<listener>-->
+        <!--<description>session监听器</description>-->
+        <!--<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>-->
+    <!--</listener>-->
 
 
     <!-- 配置DispatcherServlet前端控制器 -->
@@ -82,7 +82,7 @@
     </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:config/applicationContext-all.xml, classpath:config/spring-security.xml</param-value>
+        <param-value>classpath:config/applicationContext-all.xml</param-value>
     </context-param>
 
     <!-- 配置应用会话 -->

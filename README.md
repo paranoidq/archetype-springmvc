@@ -9,10 +9,25 @@
 
 
 ## TODO
+借鉴：https://github.com/paranoidq/funiture，实现其中的各项功能模板，并实现高效的可插拔可选择
 
-基础功能：
-- 前端常用组件与后端对应功能
-- api网关
+web基础功能：
+- api网关、rest
+- cookie、session管理组件化
+-
+
+
+工具：
+- json
+-
+
+
+前端：
+- 文件上传
+- pdf展示
+- 富文本编辑器
+-
+
 
 
 日志：
@@ -22,9 +37,9 @@
 
 
 数据访问
+- mysql、oracle
 - mybatis plus
 - 分页
-
 
 
 安全：
@@ -40,3 +55,8 @@
 高性能：
 - redis缓存
 - ehcache缓存
+
+
+
+## 更高级的功能TODO
+- 重写maven-archetype:generate功能，增加参数，实现根据不同的参数，拷贝不同的项目框架和组件

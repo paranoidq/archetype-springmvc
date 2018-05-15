@@ -5,23 +5,22 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-4.0.xsd
-">
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+>
 
-    <!-- 加载 jdbc.properties 配置文件 -->
+<!-- 加载普通的jdbc.properties 配置文件 -->
     <!--<context:property-placeholder location="classpath:config/jdbc.properties"/>-->
 
-
-    <!-- 注入自定义placeholder解析器，对加密存储的数据库密码配置解密 -->
-    <bean id="propertyConfigure" class="me.archetype.security.PasswordDecoderConfigure">
+<!-- 加载经过加密的jdbc.properties 配置文件。注入自定义placeholder解析器，对加密存储的数据库密码配置解密 -->
+    <bean id="propertyConfigure" class="me.webapp.security.db.DatasourcePasswordDecoderConfigure">
         <property name="location">
             <value>classpath:config/jdbc.properties</value>
         </property>
     </bean>
 
-    <!-- 配置数据源(连接池) -->
+
+
+<!-- 配置数据源(连接池) -->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="${jdbc.driverClassName}"></property>
         <property name="url" value="${jdbc.url}"></property>
@@ -33,8 +32,9 @@
         <property name="defaultAutoCommit" value="${jdbc.defaultAutoCommit}"></property>
     </bean>
 
-    <!-- mybatis session工厂 -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+
+<!-- mybatis session工厂 -->
+    <bean id="_sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <!-- mybatis配置文件 -->
         <property name="configLocation" value="classpath:config/sqlMapConfig.xml" />
@@ -59,8 +59,8 @@
 
     <!-- 3. mapper扫描器，无需在通过字符串指定映射值 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="me.archetype.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="me.webapp.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="_sqlSessionFactory"/>
     </bean>
 
 </beans>
