@@ -10,8 +10,11 @@
         http://www.springframework.org/schema/context/spring-context-4.0.xsd
 ">
 
-    <!-- 配置自动扫描，并默认开启基于注解的bean注入 -->
+    <!--配置自动扫描注解注册bean，并默认开启基于注解的bean注入。包含了context:annotation-config的功能-->
     <context:component-scan base-package="me.webapp"></context:component-scan>
+
+    <!--对于已经在spring xml中注册过的bean，开启注解支持。但不会自动扫描注解-->
+    <!--<context:annotation-config></context:annotation-config>-->
 
 
     <!--
