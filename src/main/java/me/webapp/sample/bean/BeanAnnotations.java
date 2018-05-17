@@ -1,4 +1,4 @@
-package me.webapp.sample.annotations;
+package me.webapp.sample.bean;
 
 import me.webapp.domain.User;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +26,10 @@ import org.springframework.stereotype.Component;
 public class BeanAnnotations {
 
 
+    /**
+     *
+     * @return
+     */
     @Bean
     @Lazy
     @Scope("prototype")

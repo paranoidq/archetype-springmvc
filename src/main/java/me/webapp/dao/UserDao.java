@@ -1,7 +1,7 @@
 package me.webapp.dao;
 
 import me.webapp.domain.User;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * @author paranoidq
  * @since 1.0.0
  */
-@Component
+@Repository
 public interface UserDao {
 
     List<User> selectAll();

@@ -27,7 +27,7 @@ import javax.annotation.PreDestroy;
  */
 
 @Component
-public class BeanLifetimeHook implements InitializingBean, DisposableBean, BeanNameAware {
+public class BeanLifetimeHook implements InitializingBean, DisposableBean, BeanNameAware{
 
     private static final Logger logger = LoggerFactory.getLogger(BeanLifetimeHook.class);
 
