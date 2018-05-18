@@ -23,13 +23,4 @@
     -->
     <import resource="classpath:config/applicationContext-db.xml"/>
     <import resource="classpath:config/applicationContext-tx.xml"/>
-
-
-
-    <!--bean xml定义-->
-    <bean id="sample" class="me.webapp.sample.bean.XmlBeanDefinition">
-        <constructor-arg type="java.lang.String" value="1"/>
-        <constructor-arg type="java.lang.String" value="test"/>
-    </bean>
-
 </beans>

@@ -3,6 +3,7 @@ package me.webapp.dao;
 import me.webapp.domain.User;
 import org.springframework.stereotype.Repository;
 
+import javax.inject.Scope;
 import java.util.List;
 
 /**
