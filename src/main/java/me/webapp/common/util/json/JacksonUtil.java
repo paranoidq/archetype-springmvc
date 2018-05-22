@@ -10,7 +10,7 @@ import java.io.IOException;
  * @author paranoidq
  * @since 1.0.0
  */
-public class JacksonUtil {
+public final class JacksonUtil {
 
 
     /**

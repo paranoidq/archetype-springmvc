@@ -4,7 +4,7 @@ package me.webapp.domain;
  * @author paranoidq
  * @since 1.0.0
  */
-public class User extends BaseDomainPojo {
+public class User extends AbstractBaseDomainBean {
 
     private int id;
     private String username;
