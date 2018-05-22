@@ -1,5 +1,6 @@
 package me.webapp.domain;
 
+import me.webapp.common.util.object.ObjectUtils;
 import me.webapp.exception.DomainException;
 
 import java.io.*;
@@ -30,14 +31,8 @@ public abstract class AbstractBaseDomainBean implements Serializable {
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(byteArrayOutputStream);
-            oos.writeObject(this);
-
-            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
-            ObjectInputStream ois = new ObjectInputStream(byteArrayInputStream);
-            return ois.readObject();
+            return ObjectUtils.deepClone(this);
         } catch (IOException e) {
             throw new DomainException("域对象clone失败", e);
         } catch (ClassNotFoundException e) {
