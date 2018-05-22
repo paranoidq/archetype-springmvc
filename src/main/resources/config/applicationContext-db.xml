@@ -67,7 +67,7 @@
     <!-- 3. mapper扫描器，无需在通过字符串指定映射值 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="me.webapp.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="_sqlSessionFactory"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
 </beans>

@@ -157,7 +157,7 @@
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <javax.inject.version>1</javax.inject.version>
         <spring.version>4.3.12.RELEASE</spring.version>
-        <aspectjweaver.version>1.5.4</aspectjweaver.version>
+        <aspectj.version>1.8.10</aspectj.version>
 
         <dep.mysql-connector>5.1.43</dep.mysql-connector>
 
@@ -292,7 +292,13 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>${aspectjweaver.version}</version>
+            <version>${aspectj.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
         </dependency>
 
     <!-- mysql jdbc -->

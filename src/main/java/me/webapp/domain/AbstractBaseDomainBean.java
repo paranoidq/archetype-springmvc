@@ -52,6 +52,7 @@ public abstract class AbstractBaseDomainBean implements Serializable {
         StringBuffer sb = new StringBuffer();
         try {
             for (Field f : dFields) {
+                f.setAccessible(true);
                 int modifiers = f.getModifiers();
                 if (!Modifier.isStatic(modifiers)) {
                         sb.append(",").append(f.getName()).append("=[").append(f.get(this)).append("]");
