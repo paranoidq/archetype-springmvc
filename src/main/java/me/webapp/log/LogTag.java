@@ -6,12 +6,21 @@ package me.webapp.log;
  */
 public class LogTag {
 
-    public static interface Status {
-        String prefix = "[status-";
+    public static interface Statis {
+        String prefix = "[statis-";
 
         String SERVICE = prefix + "service] ";
         String CONTROLLER = prefix + "controller] ";
         String DAO = prefix + "dao] ";
+
+        String METHOD_TIMING = prefix + "methodTiming] ";
+    }
+
+
+    public static interface LOGGING {
+        String prefix = "[logging-";
+
+        String METHOD_INVOKE = prefix + "methodInvoke] ";
     }
 
 }

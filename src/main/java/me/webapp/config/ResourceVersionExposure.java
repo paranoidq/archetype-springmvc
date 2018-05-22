@@ -1,5 +1,7 @@
 package me.webapp.config;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.context.ServletContextAware;
 
 import javax.servlet.ServletContext;
@@ -17,8 +19,10 @@ public class ResourceVersionExposure implements ServletContextAware {
     private ServletContext servletContext;
     private String resourceVersion;
 
+    @Value("${webapp.static.version}")
+    private String version = "1.0";
+
     public void init() {
-        String version = "1.0";
         resourceVersion = version;
         getServletContext().setAttribute("resourceVersion", resourceVersion);
     }

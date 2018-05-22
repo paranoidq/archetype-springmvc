@@ -20,6 +20,11 @@
     <!--启用aspectJ自动代理, 或在配置类的类级别上使用@EnableAspectJAutoProxy注解，proxy-target-class默认为false，表示使用JDK代理，true表示使用CGLib代理-->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
+
+    <!--引入配置文件占位符，or采用JavaConfig方式引入：@PropertySource-->
+    <context:property-placeholder location="classpath*:config/app.properties"/>
+
+
     <!-- 静态资源映射 -->
     <mvc:resources location="/resources/" mapping="/resources/**"/>
 

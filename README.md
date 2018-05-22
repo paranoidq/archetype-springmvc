@@ -14,7 +14,8 @@
 web基础功能：
 - api网关、rest
 - cookie、session管理组件化
--
+- 动态刷新配置文件
+- 监控和日志AOP
 
 
 工具：

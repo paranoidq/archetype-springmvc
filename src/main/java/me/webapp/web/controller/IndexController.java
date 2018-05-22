@@ -3,6 +3,8 @@ package me.webapp.web.controller;
 import me.webapp.common.util.spring.SpringContainerUtils;
 import me.webapp.log.AppLoggerDef;
 import me.webapp.service.UserService;
+import me.webapp.support.statistics.EnableMethodLogging;
+import me.webapp.support.statistics.EnableMethodTiming;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -26,6 +28,8 @@ public class IndexController {
 
     @RequestMapping(value = "/hello", produces = "text/plain; charset=utf-8", consumes = "*/*")
     @ResponseBody
+    @EnableMethodLogging
+    @EnableMethodTiming
     public String hello() {
 
         ResourceLoader resourceLoader = containerUtils.getResourceLoader();

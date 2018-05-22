@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 1.0.0
  */
 
-@RestController(value = "/rest")
+@RestController()
+@RequestMapping(value = "/rest")
 public class BaseRestController {
 
 

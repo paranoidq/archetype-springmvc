@@ -5,6 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.web.context.support.XmlWebApplicationContext;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Spring容器工具类
@@ -49,5 +55,26 @@ public class SpringContainerUtils {
 
     public BeanFactory getBeanFactory() {
         return beanFactory;
+    }
+
+
+    /**
+     * 获取当前请求的ServletRequest对象实例
+     * @return
+     */
+    public HttpServletRequest getServletRequest() {
+        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+    }
+
+
+
+
+    /**
+     * 刷新应用上下文，重新加载配置文件
+     */
+    public void refreshContext() {
+        if (applicationContext instanceof XmlWebApplicationContext) {
+            ((XmlWebApplicationContext) applicationContext).refresh();
+        }
     }
 }
