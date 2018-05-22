@@ -21,13 +21,17 @@ import java.util.UUID;
 /**
  * JWT工具类
  *
- *
  * @author paranoidq
  * @since 1.0.0
  */
 public class JwtUtil {
 
+    /**
+     * JWT加解密算法
+     */
     private Algorithm algorithm;
+
+
     private JwtUtil() {
         try {
             PrivateKey privateKey = RSAUtil.loadPrivateKeyFromPfx(
@@ -53,6 +57,13 @@ public class JwtUtil {
         }
         return instance;
     }
+
+
+    public JwtUtil(PublicKey publicKey, PrivateKey privateKey) {
+        this.algorithm = Algorithm.RSA256((RSAPublicKey) publicKey, (RSAPrivateKey) privateKey);
+    }
+
+
 
     /**
      * 创建JWT token，默认当天过期
@@ -94,8 +105,18 @@ public class JwtUtil {
      */
     public String decodeUserName(String token) {
         DecodedJWT decodedJWT = JWT.decode(token);
+
+        decodedJWT.getHeader();
+        decodedJWT.getPayload();
+        decodedJWT.getSignature();
+        decodedJWT.getToken();
+        decodedJWT.getExpiresAt();
+        decodedJWT.getIssuer();
+
         return decodedJWT.getAudience().get(0);
     }
+
+
 
 
     private static final String ISSUER = "NewHorizonLtd";

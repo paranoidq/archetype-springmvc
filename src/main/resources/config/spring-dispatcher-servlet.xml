@@ -13,7 +13,8 @@
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 启用mvc注解支持 -->
-    <mvc:annotation-driven/>
+    <!--<mvc:annotation-driven/>-->
+
     <context:component-scan base-package="me.webapp"></context:component-scan>
 
     <!-- 静态资源映射 -->

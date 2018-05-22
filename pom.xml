@@ -172,6 +172,8 @@
         <commons-httpclient.version>3.0.1</commons-httpclient.version>
         <httpclient.version>4.5.1</httpclient.version>
 
+        <jackson-core.version>2.8.9</jackson-core.version>
+
         <junit.version>4.12</junit.version>
         <!--依赖版本 end-->
 
@@ -349,8 +351,16 @@
             <version>${commons-httpclient.version}</version>
         </dependency>
 
+    <!--json-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-core.version}</version>
+        </dependency>
 
-    <!--测试依赖-->
+
+
+        <!--测试依赖-->
         <!--junit-->
         <dependency>
             <groupId>junit</groupId>
