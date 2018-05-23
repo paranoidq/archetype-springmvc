@@ -1,0 +1,109 @@
+package me.webapp.common.util.jedis.pool;
+
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
+
+/**
+ * @author paranoidq
+ * @since 1.0.0
+ */
+public class JedisPoolBuilder {
+
+    private String host;
+    private int port;
+    private int timeout;
+    private String password;
+
+
+    private int maxTotal = 8;
+    private int maxIdle = 8;
+    private int maxWaitMillis = 5000;
+
+    private boolean testWhileIdle = true;
+    private int timeBetweenEvictionRunsMillis = 5000;
+    private int minEvictableIdleTimeMillis = 10000;
+
+
+    private JedisPoolBuilder(String host, int port, int timeout, String password) {
+        this.host = host;
+        this.port = port;
+        this.timeout = timeout;
+        this.password = password;
+    }
+
+    public static JedisPoolBuilder newBuilder(String host, int port, int timeout, String password) {
+        return new JedisPoolBuilder(host, port, timeout, password);
+    }
+
+    public JedisPool build() {
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+
+        // 配置jedis线程池数量
+        jedisPoolConfig.setMaxTotal(maxTotal);
+        jedisPoolConfig.setMaxIdle(maxIdle);
+        jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
+
+        // 配置jedis线程池idle eviction
+        jedisPoolConfig.setTestWhileIdle(testWhileIdle);
+        jedisPoolConfig.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
+        jedisPoolConfig.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
+
+        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, password);
+        return jedisPool;
+    }
+
+    public JedisPoolBuilder maxTotal(int maxTotal) {
+        if (maxTotal > 0) {
+            this.maxTotal = maxTotal;
+        }
+        return this;
+    }
+
+    public JedisPoolBuilder maxIdle(int maxIdle) {
+        if (maxIdle > 0 && maxIdle <= maxTotal) {
+            this.maxIdle = maxIdle;
+        }
+        return this;
+    }
+
+    public JedisPoolBuilder maxWaitMillis(int maxWaitMillis) {
+        if (maxWaitMillis > 0) {
+            this.maxWaitMillis = maxWaitMillis;
+        }
+        return this;
+    }
+
+
+    public JedisPoolBuilder timeBetweenEvictionRunsMillis(int timeBetweenEvictionRunsMillis) {
+        if (timeBetweenEvictionRunsMillis > 0) {
+            this.timeBetweenEvictionRunsMillis = timeBetweenEvictionRunsMillis;
+        }
+        return this;
+    }
+
+    public JedisPoolBuilder minEvictableIdleTimeMillis(int minEvictableIdleTimeMillis) {
+        if (minEvictableIdleTimeMillis > 0) {
+            this.minEvictableIdleTimeMillis = minEvictableIdleTimeMillis;
+        }
+        return this;
+    }
+
+    public JedisPoolBuilder testWhileIdle(boolean testWhileIdle) {
+        this.testWhileIdle = testWhileIdle;
+        return this;
+    }
+
+
+    public static void main(String[] args) {
+        String host = "127.0.0.1";
+        int port = 6379;
+        int timeout = 1000;
+        String password = null;
+
+        JedisPoolBuilder builder = new JedisPoolBuilder(host, port, timeout, password);
+        JedisPool pool = builder
+            .maxTotal(100)
+            .build();
+
+    }
+}

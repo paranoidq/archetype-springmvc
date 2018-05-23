@@ -12,8 +12,8 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:config/statics.properties")
 public class StaticsConfig {
 
-    @Value("${webapp.statics.enabled}")
-    private String staticsEnabled = "false";
+    @Value("${webapp.statics.enabled:false}")
+    private String staticsEnabled;
 
 
     public boolean isStaticsEnabled() {

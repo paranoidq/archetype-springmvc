@@ -18,15 +18,15 @@ public class AppConfig {
     /**
      * 静态资源版本号，默认为1.0
      */
-    @Value("${webapp.static.version}")
-    private String staticResourceVersion = "1.0";
+    @Value("${webapp.static.version:1.0}")
+    private String staticResourceVersion;
 
 
     /**
-     * 鉴权模式，默认为jwt鉴权模式
+     * 鉴权模式，默认为{@link me.webapp.service.auth.checker.AlwaysPassChecker}鉴权模式
      */
-    @Value("${webapp.auth.checker}")
-    private String authChecker = "me.webapp.service.auth.checker.AlwaysPassChecker";
+    @Value("${webapp.auth.checker:me.webapp.service.auth.checker.AlwaysPassChecker}")
+    private String authChecker;
 
     public String getStaticResourceVersion() {
         return staticResourceVersion;
