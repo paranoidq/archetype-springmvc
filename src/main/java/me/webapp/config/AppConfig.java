@@ -1,5 +1,6 @@
 package me.webapp.config;
 
+import me.webapp.service.auth.AuthCheck;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,12 @@ public class AppConfig {
     @Value("${webapp.static.version:1.0}")
     private String staticResourceVersion;
 
+    /**
+     * 是否开启访问权限验证
+     * 默认为true，开启权限验证
+     */
+    @Value("${webapp.auth.enabled:false}")
+    private boolean authEnabled;
 
     /**
      * 鉴权模式，默认为{@link me.webapp.service.auth.checker.AlwaysPassChecker}鉴权模式

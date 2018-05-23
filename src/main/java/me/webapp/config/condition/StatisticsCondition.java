@@ -1,7 +1,5 @@
 package me.webapp.config.condition;
 
-import me.webapp.config.StaticsConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
@@ -11,7 +9,8 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
  *
  *
  * 可以通过启用-Dwebapp.status.enabled=true来开启该功能
- * 也可以放入ServletContext启动参数中
+ * 或放入ServletContext启动参数中
+ * 或通过app.properties配置
  *
  * @author paranoidq
  * @since 1.0.0
