@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author paranoidq
  * @since 1.0.0
  */
-public class AlwaysFailedChecker implements AuthChecker {
+public class AlwaysFailChecker implements AuthChecker {
 
     @Override
     public boolean check(HttpServletRequest request) {

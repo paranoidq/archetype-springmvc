@@ -39,8 +39,8 @@ public class WebappExceptionHandler {
      */
     @ExceptionHandler(Throwable.class)
     public ModelAndView throwable(Throwable t) {
-        ModelAndView view = renderErrorView(ErrorCode.SERVER_UNKNOWN_ERROR, "服务器发生了异常");
-        logger.error("Uncaught exception", t);
+        ModelAndView view = renderErrorView(ErrorCode.SERVER_UNKNOWN_ERROR, "服务器发生了错误");
+        logger.error("未知异常", t);
         return view;
     }
 
@@ -53,7 +53,7 @@ public class WebappExceptionHandler {
     @ExceptionHandler(AuthException.class)
     public ModelAndView authException(AuthException e) {
         ModelAndView view = renderErrorView(ErrorCode.AUTH_ERROR, "权限验证失败");
-        logger.error("Authentication failed", e);
+        logger.error("权限验证异常", e);
         return view;
     }
 

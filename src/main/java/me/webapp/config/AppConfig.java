@@ -1,7 +1,5 @@
 package me.webapp.config;
 
-import me.webapp.service.auth.AuthChecker;
-import me.webapp.service.auth.checker.JwtChecker;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,15 +18,15 @@ public class AppConfig {
     /**
      * 静态资源版本号，默认为1.0
      */
-    @Value("${webapp.static.version")
+    @Value("${webapp.static.version}")
     private String staticResourceVersion = "1.0";
 
 
     /**
      * 鉴权模式，默认为jwt鉴权模式
      */
-    @Value("${webapp.auth.checker")
-    private String authChecker = "jwt";
+    @Value("${webapp.auth.checker}")
+    private String authChecker = "me.webapp.service.auth.checker.AlwaysPassChecker";
 
     public String getStaticResourceVersion() {
         return staticResourceVersion;

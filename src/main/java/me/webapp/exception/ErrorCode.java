@@ -6,6 +6,8 @@ package me.webapp.exception;
  */
 public enum ErrorCode {
 
+    OK(0000),
+
     AUTH_ERROR(1001),
 
 

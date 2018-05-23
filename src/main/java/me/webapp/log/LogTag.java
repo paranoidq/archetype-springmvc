@@ -21,6 +21,7 @@ public class LogTag {
         String prefix = "[logging-";
 
         String METHOD_INVOKE = prefix + "methodInvoke] ";
+        String AUTH = prefix + "auth] ";
     }
 
 }
