@@ -11,6 +11,9 @@ public enum ErrorCode {
     AUTH_ERROR(1001),
 
 
+    UPLOAD_ERROR(8001),
+
+
     SERVER_UNKNOWN_ERROR(9001)
     ;
 

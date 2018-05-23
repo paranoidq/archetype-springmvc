@@ -57,4 +57,16 @@
         <property name="contentType" value="text/html"/>
     </bean>
 
+
+    <!--multipart file处理器，servlet3.0容器-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+    </bean>
+    <!--multipart file处理器替代，非servlet3.0容器-->
+    <!--<bean id="multipartResolver"-->
+        <!--class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+        <!--<property name="maxInMemorySize" value="10000"/>-->
+        <!--<property name="maxUploadSizePerFile" value="10000"/>-->
+    <!--</bean>-->
+
 </beans>

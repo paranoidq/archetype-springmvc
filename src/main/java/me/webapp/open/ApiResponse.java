@@ -19,7 +19,7 @@ public class ApiResponse {
     /**
      * 返回报文信息
      */
-    private String msg;
+    private Object msg;
     /**
      * 返回应答的时间戳
      */
@@ -28,7 +28,7 @@ public class ApiResponse {
     // TODO. other useful fields ???
 
 
-    private ApiResponse(ErrorCode code, String reason, String msg) {
+    private ApiResponse(ErrorCode code, String reason, Object msg) {
         this.code = code;
         this.reason = reason;
         this.msg = msg;
@@ -41,7 +41,7 @@ public class ApiResponse {
      * @param msg
      * @return
      */
-    public static ApiResponse createOk(String msg) {
+    public static ApiResponse createOk(Object msg) {
         return new ApiResponse(ErrorCode.OK, "", msg);
     }
 
@@ -64,7 +64,7 @@ public class ApiResponse {
      * @param message
      * @return
      */
-    public static ApiResponse createError(ErrorCode errorCode, String reason, String message) {
+    public static ApiResponse createError(ErrorCode errorCode, String reason, Object message) {
         return new ApiResponse(errorCode, reason, message);
     }
 

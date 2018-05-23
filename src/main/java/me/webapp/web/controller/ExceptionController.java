@@ -1,6 +1,7 @@
 package me.webapp.web.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class ExceptionController {
-
     @RequestMapping("/exception")
     public String f() throws Throwable {
         throw new Throwable("a");
