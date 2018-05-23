@@ -15,6 +15,7 @@
 <!-- 加载经过加密的jdbc.properties 配置文件。注入自定义placeholder解析器，对加密存储的数据库密码配置解密 -->
     <bean id="propertyConfigure" class="me.webapp.service.db.DatasourcePasswordDecoderConfigure">
         <property name="locations">
+            <!--TODO: 配置多个PropertyPlaceholderConfigurer会有加载顺序的问题，导致有些占位符没法解析，影响bean的注入，比如AppConfig用在AuthChecker创建的时候-->
             <value>classpath*:config/*.properties</value>
         </property>
         <!--默认检查system配置作为备用（fallback模式）-->
