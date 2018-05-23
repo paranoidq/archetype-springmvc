@@ -1,12 +1,11 @@
 package me.webapp.web.controller;
 
 import me.webapp.common.util.spring.SpringContainerUtils;
-import me.webapp.log.AppLoggerDef;
-import me.webapp.service.UserService;
+import me.webapp.service.auth.AuthCheck;
+import me.webapp.service.bussiness.UserService;
 import me.webapp.support.statistics.EnableMethodLogging;
 import me.webapp.support.statistics.EnableMethodTiming;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
@@ -30,6 +29,7 @@ public class IndexController {
     @ResponseBody
     @EnableMethodLogging
     @EnableMethodTiming
+    @AuthCheck
     public String hello() {
 
         ResourceLoader resourceLoader = containerUtils.getResourceLoader();

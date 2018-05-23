@@ -12,17 +12,19 @@
 
 <!-- 加载普通的jdbc.properties 配置文件 -->
     <!--<context:property-placeholder location="classpath:config/jdbc.properties"/>-->
-
 <!-- 加载经过加密的jdbc.properties 配置文件。注入自定义placeholder解析器，对加密存储的数据库密码配置解密 -->
-    <bean id="propertyConfigure" class="me.webapp.security.db.DatasourcePasswordDecoderConfigure">
-        <property name="location">
-            <value>classpath:config/jdbc.properties</value>
+    <bean id="propertyConfigure" class="me.webapp.service.db.DatasourcePasswordDecoderConfigure">
+        <property name="locations">
+            <value>classpath:*config/jdbc.properties</value>
         </property>
         <!--默认检查system配置作为备用（fallback模式）-->
         <!--0，不检查system配置，1，检查system，但作为备用，2，优先检查system配置，如果有则覆盖属性定义-->
         <property name="systemPropertiesMode">
             <value>1</value>
         </property>
+        <!--应用中可能存在多个PropertyPlaceholderConfigurer实例解析不同的配置文件，因此要忽略本Configurer无法解析的占位符由后面的Configurer继续解析-->
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="order" value="0"/>
     </bean>
 
 

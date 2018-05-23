@@ -1,4 +1,4 @@
-package me.webapp.service;
+package me.webapp.service.bussiness;
 
 import org.springframework.stereotype.Service;
 
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService {
-
 
     public void test() {
 

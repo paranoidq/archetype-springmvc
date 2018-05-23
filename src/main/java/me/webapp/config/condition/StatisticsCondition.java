@@ -1,5 +1,7 @@
 package me.webapp.config.condition;
 
+import me.webapp.config.StaticsConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
@@ -18,7 +20,7 @@ public class StatisticsCondition implements Condition {
 
     @Override
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-        String statusEnabled = context.getEnvironment().getProperty("webapp.status.enabled");
+        String statusEnabled = context.getEnvironment().getProperty("webapp.statics.enabled");
         return statusEnabled != null && statusEnabled.equalsIgnoreCase("true");
     }
 }

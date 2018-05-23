@@ -1,4 +1,4 @@
-package me.webapp.security.auth;
+package me.webapp.service.auth;
 
 import me.webapp.common.util.spring.SpringContainerUtils;
 import me.webapp.exception.AuthException;
@@ -9,20 +9,21 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * 鉴权切面
- * <p>
- * 该切面往Controller中织入权限校验的逻辑
+ *
+ * 该切面往Controller中织入权限校验的逻辑，并在调用Controller相应的handler处理请求之前进行权限的验证
+ * 权限验证采用代理模式，代理给{@link AuthChecker}的实现类
  *
  * @author paranoidq
  * @since 1.0.0
  */
 @Aspect
-@Component
-public class ControllerAuthAspect {
-    private static final Logger logger = LoggerFactory.getLogger(ControllerAuthAspect.class);
+@Service
+public class ControllerAuthCheckService {
+    private static final Logger logger = LoggerFactory.getLogger(ControllerAuthCheckService.class);
 
     @Autowired
     SpringContainerUtils containerUtils;
@@ -30,10 +31,11 @@ public class ControllerAuthAspect {
     @Autowired
     private AuthChecker authChecker;
 
+
     /**
-     * 拦截注解了{@link org.springframework.web.bind.annotation.RequestMapping}和{@link CheckAuth}的方法调动
+     * 拦截注解了{@link org.springframework.web.bind.annotation.RequestMapping}和{@link AuthCheck}的方法调动
      */
-    @Pointcut("@annotation(me.webapp.security.auth.CheckAuth) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
+    @Pointcut("@annotation(me.webapp.service.auth.AuthCheck) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public void authPointcut() {}
 
 
@@ -47,10 +49,10 @@ public class ControllerAuthAspect {
     public Object checkAuth(ProceedingJoinPoint joinPoint) throws Throwable {
         boolean passed = authChecker.check(containerUtils.getServletRequest());
         if (passed) {
-            logger.info("验证通过，允许访问");
+            logger.info("权限验证通过，允许访问");
             return joinPoint.proceed(joinPoint.getArgs());
         }
-        throw new AuthException("权限验证失败");
+        throw new AuthException("权限验证失败，拒绝访问");
     }
 
 }

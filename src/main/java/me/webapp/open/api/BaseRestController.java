@@ -1,4 +1,4 @@
-package me.webapp.web.portal.rest;
+package me.webapp.open.api;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

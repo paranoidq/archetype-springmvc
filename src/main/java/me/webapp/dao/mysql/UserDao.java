@@ -1,9 +1,8 @@
-package me.webapp.dao;
+package me.webapp.dao.mysql;
 
 import me.webapp.domain.User;
 import org.springframework.stereotype.Repository;
 
-import javax.inject.Scope;
 import java.util.List;
 
 /**

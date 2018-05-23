@@ -1,4 +1,4 @@
-package me.webapp.security.db;
+package me.webapp.service.db;
 
 import me.webapp.common.constants.AppConstants;
 import me.webapp.common.util.encoding.EncodingUtil;
@@ -18,6 +18,9 @@ import java.util.Properties;
 /**
  * 加载jdbc.properties时自动解密password
  * 继承{@link PlaceholderConfigurerSupport}，并在{@link #processProperties(ConfigurableListableBeanFactory, Properties)}中实现解码逻辑
+ *
+ * 注意：该PropertyPlaceholderConfigurer只负责解析jdbc.properties，
+ * 因此在xml中配置需要添加ignoreUnresolvablePlaceholders保证其他Configurer实例可以继续解析
  *
  * TODO：策略模式实现多种加解密算法
  *
