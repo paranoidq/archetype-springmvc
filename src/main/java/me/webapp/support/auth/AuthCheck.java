@@ -1,4 +1,4 @@
-package me.webapp.service.auth;
+package me.webapp.support.auth;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,11 +1,17 @@
 package me.webapp.open;
 
 import me.webapp.exception.ErrorCode;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
+ *
+ * 当采用rest方式返回时，默认应答HTTP 200
+ *
  * @author paranoidq
  * @since 1.0.0
  */
+@ResponseStatus(HttpStatus.OK)
 public class ApiResponse {
 
     /**

@@ -1,7 +1,6 @@
-package me.webapp.service.auth.checker;
+package me.webapp.support.auth.checker;
 
 import me.webapp.common.util.jwt.JwtUtil;
-import me.webapp.service.auth.AuthChecker;
 import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.http.Cookie;

@@ -1,4 +1,4 @@
-package me.webapp.service.bussiness;
+package me.webapp.service;
 
 import org.springframework.stereotype.Service;
 

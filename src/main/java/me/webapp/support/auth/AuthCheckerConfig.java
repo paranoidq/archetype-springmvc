@@ -1,9 +1,10 @@
-package me.webapp.service.auth;
+package me.webapp.support.auth;
 
 import me.webapp.config.AppConfig;
 import me.webapp.exception.AuthException;
 import me.webapp.log.LogTag;
-import me.webapp.service.auth.checker.AlwaysPassChecker;
+import me.webapp.support.auth.checker.AlwaysPassChecker;
+import me.webapp.support.auth.checker.AuthChecker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

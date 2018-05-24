@@ -1,6 +1,4 @@
-package me.webapp.service.auth.checker;
-
-import me.webapp.service.auth.AuthChecker;
+package me.webapp.support.auth.checker;
 
 import javax.servlet.http.HttpServletRequest;
 

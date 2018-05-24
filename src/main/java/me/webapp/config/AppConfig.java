@@ -1,8 +1,6 @@
 package me.webapp.config;
 
-import me.webapp.service.auth.AuthCheck;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
@@ -30,9 +28,9 @@ public class AppConfig {
     private boolean authEnabled;
 
     /**
-     * 鉴权模式，默认为{@link me.webapp.service.auth.checker.AlwaysPassChecker}鉴权模式
+     * 鉴权模式，默认为{@link me.webapp.support.auth.checker.AlwaysPassChecker}鉴权模式
      */
-    @Value("${webapp.auth.checker:me.webapp.service.auth.checker.AlwaysPassChecker}")
+    @Value("${webapp.auth.checker:me.webapp.support.auth.checker.AlwaysPassChecker}")
     private String authChecker;
 
     public String getStaticResourceVersion() {

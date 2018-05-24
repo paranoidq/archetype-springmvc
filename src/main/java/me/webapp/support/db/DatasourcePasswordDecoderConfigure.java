@@ -1,4 +1,4 @@
-package me.webapp.service.db;
+package me.webapp.support.db;
 
 import me.webapp.common.constants.AppConstants;
 import me.webapp.common.util.encoding.EncodingUtil;

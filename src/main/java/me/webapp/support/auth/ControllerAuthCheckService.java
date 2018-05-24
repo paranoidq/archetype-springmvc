@@ -1,8 +1,9 @@
-package me.webapp.service.auth;
+package me.webapp.support.auth;
 
 import me.webapp.common.util.spring.SpringContainerUtils;
 import me.webapp.config.condition.AuthenticateCondition;
 import me.webapp.exception.AuthException;
+import me.webapp.support.auth.checker.AuthChecker;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -40,7 +41,7 @@ public class ControllerAuthCheckService {
     /**
      * 拦截注解了{@link org.springframework.web.bind.annotation.RequestMapping}和{@link AuthCheck}的方法调动
      */
-    @Pointcut("@annotation(me.webapp.service.auth.AuthCheck) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
+    @Pointcut("@annotation(me.webapp.support.auth.AuthCheck) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public void authPointcut() {
     }
 
