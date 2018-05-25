@@ -340,6 +340,7 @@
         </dependency>
 
     <!-- thymeleaf -->
+        <!--
         <dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf</artifactId>
@@ -355,6 +356,7 @@
             <artifactId>unbescape</artifactId>
             <version>${dep.unbescape}</version>
         </dependency>
+        -->
 
     <!-- Json Web Token库 -->
         <dependency>
