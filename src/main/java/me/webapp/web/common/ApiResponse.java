@@ -26,9 +26,14 @@ package me.webapp.web.common;
  * =========================LICENSE_END==================================
  */
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -41,6 +46,7 @@ import java.io.Serializable;
  * @since 1.0.0
  */
 @ResponseStatus(HttpStatus.OK)
+@JsonSerialize(using = ApiResponse.ApiResponseSerializer.class)
 public class ApiResponse implements Serializable{
 
     /**
@@ -146,5 +152,36 @@ public class ApiResponse implements Serializable{
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+
+    public static class ApiResponseSerializer extends StdSerializer<ApiResponse> {
+
+        public ApiResponseSerializer() {
+            super(ApiResponse.class);
+        }
+
+        protected ApiResponseSerializer(Class t) {
+            super(t);
+        }
+
+        @Override
+        public void serialize(ApiResponse apiResponse, JsonGenerator gen, SerializerProvider provider) throws IOException {
+            gen.writeStartObject();
+
+            gen.writeFieldName("code");
+            gen.writeString(apiResponse.code.toString());
+
+            gen.writeFieldName("reason");
+            gen.writeString(apiResponse.reason);
+
+            gen.writeFieldName("msg");
+            gen.writeString(String.valueOf(apiResponse.msg));
+
+            gen.writeFieldName("timestamp");
+            gen.writeString(Long.toString(apiResponse.timestamp));
+
+            gen.writeEndObject();
+        }
     }
 }

@@ -26,6 +26,8 @@ package me.webapp.web.common;
  * =========================LICENSE_END==================================
  */
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 /**
  * 接口调用应答码，用于构造{@link ApiResponse}对象，并返回客户端调用
  *
@@ -43,8 +45,7 @@ public enum ApiErrorCode {
     UPLOAD_ERROR(8001, "文件上传失败"),
 
 
-    SERVER_UNKNOWN_ERROR(9001, "服务器错误")
-    ;
+    SERVER_UNKNOWN_ERROR(9001, "服务器错误"),;
 
     /**
      * 错误码
@@ -65,7 +66,6 @@ public enum ApiErrorCode {
     public String toString() {
         return Integer.toString(this.code);
     }
-
 
 
     public int getCode() {
