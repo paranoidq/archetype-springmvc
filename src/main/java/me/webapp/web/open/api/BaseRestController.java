@@ -1,4 +1,4 @@
-package me.webapp.common.util.upload;
+package me.webapp.web.open.api;
 
 /*-
  * ========================LICENSE_START=================================
@@ -26,11 +26,21 @@ package me.webapp.common.util.upload;
  * =========================LICENSE_END==================================
  */
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 /**
  * @author paranoidq
  * @since 1.0.0
  */
-public interface Uploader {
 
-    boolean upload(String name, byte[] content, String path);
+@RestController
+@RequestMapping(value = "/rest")
+public class BaseRestController {
+
+
+    @RequestMapping()
+    public String index() {
+        return "hello world";
+    }
 }

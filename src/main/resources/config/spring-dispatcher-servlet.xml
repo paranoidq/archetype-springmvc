@@ -15,9 +15,9 @@
 <!-- 配置MVC异步参数，启用异步支持需在servlet容器层配置web.xml -->
     <mvc:annotation-driven>
         <mvc:async-support default-timeout="10000" task-executor="asyncTaskExecutor">
-            <mvc:callable-interceptors>
+            <mvc:deferred-result-interceptors>
                 <bean class="org.springframework.web.context.request.async.TimeoutDeferredResultProcessingInterceptor"></bean>
-            </mvc:callable-interceptors>
+            </mvc:deferred-result-interceptors>
             <mvc:callable-interceptors>
                 <bean class="org.springframework.web.context.request.async.TimeoutCallableProcessingInterceptor"></bean>
             </mvc:callable-interceptors>

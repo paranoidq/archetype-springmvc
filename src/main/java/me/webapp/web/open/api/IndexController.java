@@ -1,4 +1,4 @@
-package me.webapp.support.auth;
+package me.webapp.web.open.api;
 
 /*-
  * ========================LICENSE_START=================================
@@ -26,46 +26,49 @@ package me.webapp.support.auth;
  * =========================LICENSE_END==================================
  */
 
-import me.webapp.config.AppConfig;
-import me.webapp.exception.AuthException;
-import me.webapp.log.LogTag;
-import me.webapp.support.auth.checker.AlwaysPassChecker;
-import me.webapp.support.auth.checker.AuthChecker;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import me.webapp.common.util.spring.SpringContainerUtils;
+import me.webapp.support.auth.AuthCheck;
+import me.webapp.service.UserService;
+import me.webapp.support.statistics.EnableMethodLogging;
+import me.webapp.support.statistics.EnableMethodTiming;
+import me.webapp.web.common.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.util.StringUtils;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * AuthChcker配置类
- *
- * 该类根据配置文件的类名构造
- *
  * @author paranoidq
  * @since 1.0.0
  */
-@Configuration
-public class AuthCheckerConfig {
-
-    private static final Logger logger = LoggerFactory.getLogger(AuthCheckerConfig.class);
+@RestController
+public class IndexController {
 
     @Autowired
-    private AppConfig appConfig;
+    private UserService userService;
 
-    @Bean
-    public AuthChecker authChecker() {
-        String authCheckerClazz = appConfig.getAuthChecker();
-        if (StringUtils.isEmpty(authCheckerClazz)) {
-            return new AlwaysPassChecker();
-        }
-        try {
-            Class<?> clazz = Class.forName(authCheckerClazz);
-            logger.info(LogTag.LOGGING.AUTH + "使用AuthChecker: [{}]", authCheckerClazz);
-            return (AuthChecker) clazz.newInstance();
-        } catch (Throwable t) {
-            throw new AuthException("无法加载AuthChecker类: " + authCheckerClazz, t);
-        }
+    @Autowired
+    private SpringContainerUtils containerUtils;
+
+    @RequestMapping(value = "/hello", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = "*/*")
+    @ResponseBody
+    @EnableMethodLogging
+    @EnableMethodTiming
+    @AuthCheck
+    public ApiResponse hello() {
+
+        ResourceLoader resourceLoader = containerUtils.getResourceLoader();
+        ApplicationContext context = containerUtils.getApplicationContext();
+
+        assert resourceLoader != null;
+        assert context != null;
+
+        // call service method
+        userService.test();
+
+        return ApiResponse.createOk("hello");
     }
 }
