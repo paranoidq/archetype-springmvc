@@ -3,6 +3,7 @@ package me.webapp.sample.hooks;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class BeansBeforeAndAfterInitializationHook implements BeanPostProcessor {
-
     private static final Logger logger = LoggerFactory.getLogger(BeansBeforeAndAfterInitializationHook.class);
 
     @Override

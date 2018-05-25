@@ -68,6 +68,7 @@
             <param-value>classpath:config/spring-dispatcher-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+
         <!--启用multipart文件上传支持-->
         <!--<multipart-config>-->
             <!--<location></location>-->
@@ -75,6 +76,9 @@
             <!--<max-file-size></max-file-size>-->
             <!--<max-request-size></max-request-size>-->
         <!--</multipart-config>-->
+
+        <!--开启异步请求支持-->
+        <async-supported>true</async-supported>
     </servlet>
     <!-- 配置DispatcherServlet拦截的URL -->
     <servlet-mapping>

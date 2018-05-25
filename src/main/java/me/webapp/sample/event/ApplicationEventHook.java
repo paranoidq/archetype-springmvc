@@ -62,7 +62,7 @@ public class ApplicationEventHook implements ApplicationListener, ApplicationCon
      */
     @EventListener(classes = ContextRefreshedEvent.class)
     public void handleContextRefreshEvent(ContextRefreshedEvent refreshedEvent) {
-
+        logger.info("xxxxxx" + refreshedEvent.getApplicationContext().toString());
     }
 
     /**

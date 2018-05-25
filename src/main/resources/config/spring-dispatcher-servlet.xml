@@ -12,10 +12,23 @@
                            http://www.springframework.org/schema/mvc
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-<!-- 启用mvc注解支持 -->
-    <!--<mvc:annotation-driven/>-->
-    <context:component-scan base-package="me.webapp"></context:component-scan>
+<!-- 配置MVC异步参数，启用异步支持需在servlet容器层配置web.xml -->
+    <mvc:annotation-driven>
+        <mvc:async-support default-timeout="10000" task-executor="asyncTaskExecutor">
+            <mvc:deferred-result-interceptors>
+                <bean class="org.springframework.web.context.request.async.TimeoutDeferredResultProcessingInterceptor"></bean>
+            </mvc:deferred-result-interceptors>
+            <mvc:callable-interceptors>
+                <bean class="org.springframework.web.context.request.async.TimeoutCallableProcessingInterceptor"></bean>
+            </mvc:callable-interceptors>
+        </mvc:async-support>
+    </mvc:annotation-driven>
+    <!--TODO: 自定义task executor-->
+    <bean id="asyncTaskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor"/>
 
+
+<!--启用自动注解扫描和装配-->
+    <context:component-scan base-package="me.webapp"></context:component-scan>
 
 <!--启用aspectJ自动代理, 或在配置类的类级别上使用@EnableAspectJAutoProxy注解，proxy-target-class默认为false，表示使用JDK代理，true表示使用CGLib代理-->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
@@ -26,6 +39,7 @@
 
 
 <!-- 静态资源映射 -->
+    <!--TODO????-->
     <mvc:resources location="/resources/" mapping="/resources/**"/>
     <!-- 静态资源映射, 根据配置文件确定资源的版本号 -->
     <bean id="rve" class="me.webapp.config.ResourceVersionExposure" init-method="init"/>
@@ -36,27 +50,6 @@
             </mvc:resolvers>
         </mvc:resource-chain>
     </mvc:resources>
-
-    <!-- 配置thymeleaf -->
-    <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
-        <property name="prefix" value="/WEB-INF/templates/"/>
-        <property name="suffix" value=".html"/>
-        <property name="templateMode" value="HTML"/>
-        <property name="cacheable" value="true"/>
-        <property name="order" value="1"/>
-        <property name="characterEncoding" value="UTF-8"/>
-    </bean>
-    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
-        <property name="templateResolver" ref="templateResolver"/>
-        <property name="enableSpringELCompiler" value="true"/>
-    </bean>
-    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-        <property name="templateEngine" ref="templateEngine" />
-        <property name="order" value="1" />
-        <property name="characterEncoding" value="UTF-8"/>
-        <property name="contentType" value="text/html"/>
-    </bean>
-
 
     <!--multipart file处理器，servlet3.0容器-->
     <bean id="multipartResolver"
