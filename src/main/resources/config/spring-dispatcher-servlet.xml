@@ -15,9 +15,9 @@
 <!-- 配置MVC异步参数，启用异步支持需在servlet容器层配置web.xml -->
     <mvc:annotation-driven>
         <mvc:async-support default-timeout="10000" task-executor="asyncTaskExecutor">
-            <mvc:deferred-result-interceptors>
+            <mvc:callable-interceptors>
                 <bean class="org.springframework.web.context.request.async.TimeoutDeferredResultProcessingInterceptor"></bean>
-            </mvc:deferred-result-interceptors>
+            </mvc:callable-interceptors>
             <mvc:callable-interceptors>
                 <bean class="org.springframework.web.context.request.async.TimeoutCallableProcessingInterceptor"></bean>
             </mvc:callable-interceptors>
@@ -33,33 +33,15 @@
 <!--启用aspectJ自动代理, 或在配置类的类级别上使用@EnableAspectJAutoProxy注解，proxy-target-class默认为false，表示使用JDK代理，true表示使用CGLib代理-->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-
-<!--引入配置文件占位符，or采用JavaConfig方式引入：@PropertySource-->
-    <!--<context:property-placeholder location="classpath*:config/app.properties"/>-->
-
-
-<!-- 静态资源映射 -->
-    <!--TODO????-->
-    <mvc:resources location="/resources/" mapping="/resources/**"/>
-    <!-- 静态资源映射, 根据配置文件确定资源的版本号 -->
-    <bean id="rve" class="me.webapp.config.ResourceVersionExposure" init-method="init"/>
-    <mvc:resources location="/resources/" mapping="/#{rve.resourceVersion}/**">
-        <mvc:resource-chain resource-cache="false">
-            <mvc:resolvers>
-                <bean class="org.springframework.web.servlet.resource.GzipResourceResolver"/>
-            </mvc:resolvers>
-        </mvc:resource-chain>
-    </mvc:resources>
-
-    <!--multipart file处理器，servlet3.0容器-->
+<!--multipart file处理器，servlet3.0容器-->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
     </bean>
-    <!--multipart file处理器替代，非servlet3.0容器-->
-    <!--<bean id="multipartResolver"-->
-        <!--class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-        <!--<property name="maxInMemorySize" value="10000"/>-->
-        <!--<property name="maxUploadSizePerFile" value="10000"/>-->
-    <!--</bean>-->
+<!--multipart file处理器替代，非servlet3.0容器-->
+    <bean id="multipartResolver_alternative"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxInMemorySize" value="10000"/>
+        <property name="maxUploadSizePerFile" value="10000"/>
+    </bean>
 
 </beans>
