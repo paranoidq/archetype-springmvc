@@ -61,6 +61,7 @@
             </properties>
         </profile>
 
+
         <!--war profile，仅在打包war时激活-->
         <profile>
             <id>war</id>
@@ -108,6 +109,34 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+
+
+
+        <profile>
+            <id>thymeleaf</id>
+            <properties>
+                <dep.thymeleaf>3.0.8.RELEASE</dep.thymeleaf>
+                <dep.unbescape>1.1.5.RELEASE</dep.unbescape>
+            </properties>
+            <dependencies>
+                <!-- thymeleaf -->
+                <dependency>
+                    <groupId>org.thymeleaf</groupId>
+                    <artifactId>thymeleaf</artifactId>
+                    <version>${dep.thymeleaf}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.thymeleaf</groupId>
+                    <artifactId>thymeleaf-spring4</artifactId>
+                    <version>${dep.thymeleaf}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.unbescape</groupId>
+                    <artifactId>unbescape</artifactId>
+                    <version>${dep.unbescape}</version>
+                </dependency>
+            </dependencies>
         </profile>
 
     </profiles>
@@ -164,9 +193,6 @@
 
         <dep.mybatis>3.4.5</dep.mybatis>
         <dep.mybatis-spring>1.3.1</dep.mybatis-spring>
-
-        <dep.thymeleaf>3.0.8.RELEASE</dep.thymeleaf>
-        <dep.unbescape>1.1.5.RELEASE</dep.unbescape>
 
         <jwt.version>3.2.0</jwt.version>
 
@@ -338,25 +364,6 @@
             <artifactId>mybatis-spring</artifactId>
             <version>${dep.mybatis-spring}</version>
         </dependency>
-
-    <!-- thymeleaf -->
-        <!--
-        <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf</artifactId>
-            <version>${dep.thymeleaf}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf-spring4</artifactId>
-            <version>${dep.thymeleaf}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.unbescape</groupId>
-            <artifactId>unbescape</artifactId>
-            <version>${dep.unbescape}</version>
-        </dependency>
-        -->
 
     <!-- Json Web Token库 -->
         <dependency>
