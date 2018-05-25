@@ -113,6 +113,7 @@
 
 
 
+        <!--开启profile=thymeleaf，加载相关依赖，从而支持html模板。默认不开启，采用前后端分离模式-->
         <profile>
             <id>thymeleaf</id>
             <properties>
