@@ -460,6 +460,14 @@
                     <exclude>profiles/**</exclude>
                 </excludes>
             </resource>
+            <!--包含所有src/main/java中资源-->
+            <resource>
+                <directory>${project.basedir}/src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
         </resources>
 
         <!-- 描述了项目相关的测试资源路径列表，例如和项目相关的属性文件，这些资源被包含在最终的打包文件里 -->
