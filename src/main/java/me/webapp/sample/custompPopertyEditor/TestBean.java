@@ -19,7 +19,6 @@ public class TestBean {
     @Value("a=b&c=d")
     private Map<String, String> params;
 
-
     public Date getTime() {
         return time;
     }
