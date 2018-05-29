@@ -21,9 +21,15 @@ public class CustomEditorConfigurerConfig {
         customEditors = new HashMap<>();
 
         // 注册customEditors
-        customEditors.put(Date.class, DatePropertyEditor.class);  // date
+        customEditors.put(Date.class, DatePropertyEditor.class);
+        customEditors.put(Map.class, KvPropertyEditor.class);
     }
 
+    /**
+     * 注册CustomEditorConfigurer，从而添加自定义的PropertyEditor进行属性的格式解析
+     *
+     * @return
+     */
     @Bean
     public CustomEditorConfigurer customEditorConfigurer() {
         CustomEditorConfigurer customEditorConfigurer = new CustomEditorConfigurer();

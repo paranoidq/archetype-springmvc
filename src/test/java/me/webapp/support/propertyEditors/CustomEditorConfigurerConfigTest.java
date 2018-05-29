@@ -1,6 +1,6 @@
 package me.webapp.support.propertyEditors;
 
-import me.webapp.sample.custompPopertyEditor.TimeBean;
+import me.webapp.sample.custompPopertyEditor.TestBean;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,8 @@ public class CustomEditorConfigurerConfigTest {
 
     @Test
     public void testDateEditorConfigurer() throws Exception {
-        TimeBean timeBean = (TimeBean) wac.getBean("timeBean");
+        TestBean timeBean = (TestBean) wac.getBean("testBean");
         System.out.println(timeBean.getTime());
+        System.out.println(timeBean.getParams());
     }
 }
