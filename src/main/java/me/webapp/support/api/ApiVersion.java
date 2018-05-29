@@ -1,4 +1,4 @@
-package me.webapp.common.util.customs.api;
+package me.webapp.support.api;
 
 /*-
  * ========================LICENSE_START=================================
@@ -26,32 +26,26 @@ package me.webapp.common.util.customs.api;
  * =========================LICENSE_END==================================
  */
 
-import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.web.servlet.mvc.condition.RequestCondition;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import org.springframework.web.bind.annotation.Mapping;
 
-import java.lang.reflect.Method;
+import java.lang.annotation.*;
 
 /**
+ * 标识api的版本号
+ *
  * @author paranoidq
  * @since 1.0.0
  */
-public class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Mapping
+public @interface ApiVersion {
 
-
-    @Override
-    protected RequestCondition<?> getCustomTypeCondition(Class<?> handlerType) {
-        ApiVersion apiVersion = AnnotationUtils.findAnnotation(handlerType, ApiVersion.class);
-        return createCondition(apiVersion);
-    }
-
-    @Override
-    protected RequestCondition<?> getCustomMethodCondition(Method method) {
-        ApiVersion apiVersion = AnnotationUtils.findAnnotation(method, ApiVersion.class);
-        return createCondition(apiVersion);
-    }
-
-    private RequestCondition<ApiVersionRequestCondition> createCondition(ApiVersion apiVersion) {
-        return apiVersion == null ? null : new ApiVersionRequestCondition(apiVersion.value());
-    }
+    /**
+     * 版本号，默认值为1.0
+     *
+     * @return 版本号
+     */
+    double value() default 1.0;
 }

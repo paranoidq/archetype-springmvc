@@ -27,6 +27,7 @@ package me.webapp.config;
  */
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.CustomEditorConfigurer;
 import org.springframework.web.context.ServletContextAware;
 
 import javax.servlet.ServletContext;
@@ -39,7 +40,6 @@ import javax.servlet.ServletContext;
  * @since 1.0.0
  */
 public class ResourceVersionExposure implements ServletContextAware {
-
     private ServletContext servletContext;
     private String resourceVersion;
 

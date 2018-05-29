@@ -26,11 +26,8 @@ package me.webapp.common.util.customs;
  * =========================LICENSE_END==================================
  */
 
-import me.webapp.common.util.customs.api.ApiVersionRequestMappingHandlerMapping;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 /**
  * @author paranoidq
