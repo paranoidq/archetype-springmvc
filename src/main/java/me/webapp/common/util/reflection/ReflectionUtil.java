@@ -54,6 +54,8 @@ public class ReflectionUtil {
      * 从指定的package中加载子类
      * <href>http://stackoverflow.com/questions/520328/can-you-find-all-classes-in-a-package-using-reflection</href>
      *
+     * @update 修复问题：加载类的时候会一并加载abstract类，导致newInstance实例化失败
+     *
      * @param packageName
      * @param superClass
      * @return
@@ -65,7 +67,7 @@ public class ReflectionUtil {
         for (final ClassPath.ClassInfo info : ClassPath.from(loader).getTopLevelClasses()) {
             if (info.getName().startsWith(packageName)) {
                 Class c = info.load();
-                if (superClass.isAssignableFrom(c)) {
+                if (superClass.isAssignableFrom(c) && !superClass.equals(c)) {
                     classes.add(c);
                 }
             }
