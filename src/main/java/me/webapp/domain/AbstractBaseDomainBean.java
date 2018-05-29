@@ -28,6 +28,7 @@ package me.webapp.domain;
 
 import me.webapp.common.util.object.ObjectUtils;
 import me.webapp.exception.DomainException;
+import org.springframework.context.annotation.Scope;
 
 import java.io.*;
 import java.lang.reflect.Field;

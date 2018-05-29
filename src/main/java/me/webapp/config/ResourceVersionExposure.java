@@ -27,11 +27,9 @@ package me.webapp.config;
  */
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.context.ServletContextAware;
 
 import javax.servlet.ServletContext;
-import java.util.Date;
 
 /**
  * 配置静态资源版本处理，通过自动添加版本号来管理静态资源的更新

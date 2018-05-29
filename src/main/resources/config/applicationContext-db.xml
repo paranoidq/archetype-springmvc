@@ -11,7 +11,7 @@
 >
 
 <!-- 加载普通的jdbc.properties 配置文件 -->
-    <context:property-placeholder location="classpath:config/*.properties" order="0"/>
+    <context:property-placeholder location="classpath:config/*.properties" order="0" />
 <!-- 加载经过加密的jdbc.properties 配置文件。注入自定义placeholder解析器，对加密存储的数据库密码配置解密 -->
     <bean id="propertyConfigure" class="me.webapp.support.db.DatasourcePasswordDecoderConfigure">
         <property name="locations">
