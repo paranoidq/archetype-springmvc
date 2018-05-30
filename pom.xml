@@ -81,7 +81,7 @@
                         <version>${plugin.war.version}</version>
                         <configuration>
                             <webappDirectory>${project.basedir}/src/main/webapp</webappDirectory>
-                            <webXml>${project.basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
+                            <!--<webXml>${project.basedir}/src/main/webapp/WEB-INF/web.xml</webXml>-->
                             <failOnMissingWebXml>false</failOnMissingWebXml>
                             <!-- 配置web相关资源, 如jsp, img, js, css等 -->
                             <webResources>
