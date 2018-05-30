@@ -82,6 +82,7 @@
                         <configuration>
                             <webappDirectory>${project.basedir}/src/main/webapp</webappDirectory>
                             <webXml>${project.basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
                             <!-- 配置web相关资源, 如jsp, img, js, css等 -->
                             <webResources>
                                 <resource>
@@ -277,6 +278,11 @@
             <artifactId>log4j-jcl</artifactId>
             <version>${log4j2.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
         <!--如需使用异步日志，需要包含disruptor依赖-->
         <dependency>
             <groupId>com.lmax</groupId>
@@ -417,7 +423,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
 
