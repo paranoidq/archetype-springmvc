@@ -29,7 +29,7 @@ package me.webapp.support.statistics;
 import java.lang.annotation.*;
 
 /**
- * 标记该注解的方法会由SpringAOP织入方法调用日志打印的逻辑
+ * 标记该注解的方法会执行由SpringAOP织入的统计方法调用的耗时逻辑
  *
  * 必须同时满足{@link me.webapp.config.condition.StatisticsCondition}
  *
@@ -39,5 +39,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 @Documented
-public @interface EnableMethodLogging {
+public @interface MethodTiming {
 }

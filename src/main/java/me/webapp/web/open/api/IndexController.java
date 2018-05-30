@@ -29,8 +29,8 @@ package me.webapp.web.open.api;
 import me.webapp.common.util.spring.SpringContainerUtils;
 import me.webapp.support.auth.AuthCheck;
 import me.webapp.service.UserService;
-import me.webapp.support.statistics.EnableMethodLogging;
-import me.webapp.support.statistics.EnableMethodTiming;
+import me.webapp.support.statistics.MethodLogging;
+import me.webapp.support.statistics.MethodTiming;
 import me.webapp.web.common.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -55,8 +55,8 @@ public class IndexController {
 
     @RequestMapping(value = "/hello", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = "*/*")
     @ResponseBody
-    @EnableMethodLogging
-    @EnableMethodTiming
+    @MethodLogging
+    @MethodTiming
     @AuthCheck
     public ApiResponse hello() {
 

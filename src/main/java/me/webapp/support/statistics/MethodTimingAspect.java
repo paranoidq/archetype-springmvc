@@ -56,7 +56,7 @@ public class MethodTimingAspect {
     /**
      * 拦截所有的标记了ElapsedTimeCounter注解的方法
      */
-    @Pointcut("@annotation(me.webapp.support.statistics.EnableMethodTiming)")
+    @Pointcut("@annotation(me.webapp.support.statistics.MethodTiming)")
     public void methodTimeingPointcut() {}
 
 

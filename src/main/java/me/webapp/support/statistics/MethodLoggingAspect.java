@@ -59,7 +59,7 @@ public class MethodLoggingAspect {
      * - 位于{@link me.webapp.service}包或子包中
      * - 必须是public方法
      */
-    @Pointcut("@annotation(me.webapp.support.statistics.EnableMethodLogging)")
+    @Pointcut("@annotation(me.webapp.support.statistics.MethodLogging)")
     public void methodLoggingPointcut() {
     }
 

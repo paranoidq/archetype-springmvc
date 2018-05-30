@@ -28,6 +28,7 @@ package me.webapp.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 /**
@@ -59,11 +60,50 @@ public class AppConfig {
     @Value("${webapp.auth.checker:me.webapp.support.auth.checker.AlwaysPassChecker}")
     private String authChecker;
 
+
+    // 异步执行器配置参数
+    @Value("${webapp.async.executor.corePoolSize:5}")
+    private int asyncExecutorCorePoolSize;
+    @Value("${webapp.async.executor.maxPoolSize:10}")
+    private int asyncExecutorMaxPoolSize;
+    @Value("${webapp.async.executor.keepAliveSeconds:5}")
+    private int asyncExecutorKeepAliveSeconds;
+    @Value("${webapp.async.executor.queueCapacity:100}")
+    private int asyncExecutorQueueCapacity;
+    @Value("${webapp.async.executor.awaitTerminationSeconds:5}")
+    private int asyncExecutorAwaitTerminationSeconds;
+
+
+
     public String getStaticResourceVersion() {
         return staticResourceVersion;
     }
 
     public String getAuthChecker() {
         return authChecker;
+    }
+
+    public boolean isAuthEnabled() {
+        return authEnabled;
+    }
+
+    public int getAsyncExecutorCorePoolSize() {
+        return asyncExecutorCorePoolSize;
+    }
+
+    public int getAsyncExecutorMaxPoolSize() {
+        return asyncExecutorMaxPoolSize;
+    }
+
+    public int getAsyncExecutorKeepAliveSeconds() {
+        return asyncExecutorKeepAliveSeconds;
+    }
+
+    public int getAsyncExecutorQueueCapacity() {
+        return asyncExecutorQueueCapacity;
+    }
+
+    public int getAsyncExecutorAwaitTerminationSeconds() {
+        return asyncExecutorAwaitTerminationSeconds;
     }
 }

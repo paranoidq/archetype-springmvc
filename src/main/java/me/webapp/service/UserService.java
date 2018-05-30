@@ -26,6 +26,7 @@ package me.webapp.service;
  * =========================LICENSE_END==================================
  */
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /**
@@ -35,6 +36,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
+    @Async()
     public void test() {
 
     }
