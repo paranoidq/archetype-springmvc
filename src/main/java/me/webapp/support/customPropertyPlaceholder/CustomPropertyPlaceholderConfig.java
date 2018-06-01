@@ -1,4 +1,4 @@
-package me.webapp.support.propertyPlaceholder;
+package me.webapp.support.customPropertyPlaceholder;
 
 import me.webapp.common.util.reflection.ReflectionUtil;
 import org.slf4j.Logger;
@@ -6,12 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.PathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
-import org.springframework.web.servlet.resource.ResourceResolver;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -72,7 +69,7 @@ public class CustomPropertyPlaceholderConfig {
 
             // 这个过程在工厂后处理器阶段，无法通过注解扫描的方式自动注入？？
             try {
-                List<Class<?>> classes = ReflectionUtil.getClassesBySuperClass("me.webapp.support.propertyPlaceholder", AbstractCustomPropertyPlaceholderProcessor.class);
+                List<Class<?>> classes = ReflectionUtil.getClassesBySuperClass("me.webapp.support.customPropertyPlaceholder", AbstractCustomPropertyPlaceholderProcessor.class);
                 for (Class<?> clazz : classes) {
                     customPropertyPlaceholderProcessors.add((AbstractCustomPropertyPlaceholderProcessor) clazz.newInstance());
                 }

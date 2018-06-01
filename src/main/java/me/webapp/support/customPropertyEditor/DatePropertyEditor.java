@@ -1,4 +1,4 @@
-package me.webapp.support.propertyEditors;
+package me.webapp.support.customPropertyEditor;
 
 import java.beans.PropertyEditorSupport;
 import java.text.DateFormat;
@@ -11,6 +11,7 @@ import java.util.Date;
  * @author paranoidq
  * @since 1.0.0
  */
+@EditorTargetType(Date.class)
 public class DatePropertyEditor extends PropertyEditorSupport {
 
     private enum FORMAT {

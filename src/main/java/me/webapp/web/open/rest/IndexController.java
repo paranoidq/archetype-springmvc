@@ -1,4 +1,4 @@
-package me.webapp.web.open.api;
+package me.webapp.web.open.rest;
 
 /*-
  * ========================LICENSE_START=================================
@@ -55,9 +55,9 @@ public class IndexController {
 
     @RequestMapping(value = "/hello", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = "*/*")
     @ResponseBody
-    @MethodLogging
-    @MethodTiming
-    @AuthCheck
+//    @MethodLogging
+//    @MethodTiming
+//    @AuthCheck
     public ApiResponse hello() {
 
         ResourceLoader resourceLoader = containerUtils.getResourceLoader();

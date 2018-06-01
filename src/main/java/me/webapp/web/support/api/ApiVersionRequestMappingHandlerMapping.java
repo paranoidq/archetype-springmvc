@@ -1,4 +1,4 @@
-package me.webapp.common.util.customs;
+package me.webapp.web.support.api;
 
 /*-
  * ========================LICENSE_START=================================
@@ -26,24 +26,32 @@ package me.webapp.common.util.customs;
  * =========================LICENSE_END==================================
  */
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.web.servlet.mvc.condition.RequestCondition;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+
+import java.lang.reflect.Method;
 
 /**
  * @author paranoidq
  * @since 1.0.0
  */
-@Configuration
-public class WebConfig extends WebMvcConfigurationSupport {
+public class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
 
 
-//    @Override
-//    @Bean
-//    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
-//        RequestMappingHandlerMapping handlerMapping = new ApiVersionRequestMappingHandlerMapping();
-//        handlerMapping.setOrder(0);
-//        handlerMapping.setInterceptors(getInterceptors());
-//        return handlerMapping;
-//    }
+    @Override
+    protected RequestCondition<?> getCustomTypeCondition(Class<?> handlerType) {
+        ApiVersion apiVersion = AnnotationUtils.findAnnotation(handlerType, ApiVersion.class);
+        return createCondition(apiVersion);
+    }
 
+    @Override
+    protected RequestCondition<?> getCustomMethodCondition(Method method) {
+        ApiVersion apiVersion = AnnotationUtils.findAnnotation(method, ApiVersion.class);
+        return createCondition(apiVersion);
+    }
+
+    private RequestCondition<ApiVersionRequestCondition> createCondition(ApiVersion apiVersion) {
+        return apiVersion == null ? null : new ApiVersionRequestCondition(apiVersion.value());
+    }
 }

@@ -1,4 +1,4 @@
-package me.webapp.support.propertyEditors;
+package me.webapp.support.customPropertyEditor;
 
 import me.webapp.sample.custompPopertyEditor.TestBean;
 import org.junit.Test;

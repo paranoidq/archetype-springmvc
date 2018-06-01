@@ -1,4 +1,4 @@
-package me.webapp.support.propertyPlaceholder;
+package me.webapp.support.customPropertyPlaceholder;
 
 /**
  * @author paranoidq

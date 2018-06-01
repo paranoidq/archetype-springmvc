@@ -1,9 +1,6 @@
-package me.webapp.support.propertyEditors;
+package me.webapp.support.customPropertyEditor;
 
 import java.beans.PropertyEditorSupport;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +10,7 @@ import java.util.Map;
  * @author paranoidq
  * @since 1.0.0
  */
+@EditorTargetType(Map.class)
 public class KvPropertyEditor extends PropertyEditorSupport {
 
     @Override

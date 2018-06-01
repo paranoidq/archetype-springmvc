@@ -1,4 +1,4 @@
-package me.webapp.web.open.api;
+package me.webapp.web.open.rest;
 
 /*-
  * ========================LICENSE_START=================================

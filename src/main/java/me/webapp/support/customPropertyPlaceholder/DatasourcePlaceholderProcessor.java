@@ -1,4 +1,4 @@
-package me.webapp.support.propertyPlaceholder;
+package me.webapp.support.customPropertyPlaceholder;
 
 import me.webapp.common.constants.AppConstants;
 import me.webapp.common.util.encoding.EncodingUtil;

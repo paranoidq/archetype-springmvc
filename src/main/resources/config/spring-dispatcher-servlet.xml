@@ -13,19 +13,7 @@
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 <!-- 配置MVC异步参数，启用异步支持需在servlet容器层配置web.xml -->
-    <mvc:annotation-driven>
-        <mvc:async-support default-timeout="10000" task-executor="asyncTaskExecutor">
-            <mvc:deferred-result-interceptors>
-                <bean class="org.springframework.web.context.request.async.TimeoutDeferredResultProcessingInterceptor"></bean>
-            </mvc:deferred-result-interceptors>
-            <mvc:callable-interceptors>
-                <bean class="org.springframework.web.context.request.async.TimeoutCallableProcessingInterceptor"></bean>
-            </mvc:callable-interceptors>
-        </mvc:async-support>
-    </mvc:annotation-driven>
-    <!--TODO: 自定义task executor-->
-    <bean id="asyncTaskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor"/>
-
+    <mvc:annotation-driven/>
 
 <!--启用自动注解扫描和装配-->
     <context:component-scan base-package="me.webapp"></context:component-scan>
