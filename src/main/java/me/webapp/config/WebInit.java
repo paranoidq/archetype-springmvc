@@ -1,5 +1,6 @@
 package me.webapp.config;
 
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -55,7 +56,6 @@ public class WebInit implements WebApplicationInitializer {
             new AnnotationConfigWebApplicationContext();
         applicationContext.setConfigLocation((String) properties.getOrDefault("contextConfigLocation", "classpath:config/applicationContext-all.xml"));
         applicationContext.setServletContext(servletContext);
-
 
         FilterRegistration.Dynamic encodingFilterRegistration = servletContext.addFilter("encodingFilter", CharacterEncodingFilter.class);
         encodingFilterRegistration.setInitParameter("encoding", (String) properties.getOrDefault("filterEncoding", "UTF-8"));
