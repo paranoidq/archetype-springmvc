@@ -8,25 +8,44 @@
     <artifactId>springmvc</artifactId>
     <version>1.0.0</version>
 
-
     <!--打包方式-->
     <packaging>war</packaging>
-    <description></description>
+
+    <name>archetype-springmvc</name>
+    <description>SpringMvc maven archetype</description>
+    <url>https://github.com/paranoidq/archetype-springmvc</url>
+
     <developers>
         <developer>
             <name>Wei Qian</name>
             <email>paranoid_qian@163.com</email>
         </developer>
     </developers>
+
     <contributors>
         <contributor></contributor>
     </contributors>
-    <url></url>
+
+
     <organization>
         <name>Wei Qian</name>
         <url>paranoid_qian@163.com</url>
     </organization>
+
     <inceptionYear>2018</inceptionYear>
+
+    <scm>
+        <connection>scm:git:https://github.com/paranoidq/archetype-springmvc.git</connection>
+        <url>https://github.com/paranoidq/archetype-springmvc</url>
+        <developerConnection>scm:git:https://github.com/paranoidq/archetype-springmvc.git</developerConnection>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
 
     <!--1. profile配置. Usage: mvn xxx -P[dev|test\prod]-->
@@ -424,7 +443,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 
 
     <!--4. 构建配置-->
