@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.CustomEditorConfigurer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
 import java.beans.PropertyEditor;
@@ -35,11 +36,11 @@ public class CustomEditorConfigurerConfig {
             // 注册customEditors
             for (Class<?> clazz : customEditorClasses) {
                 EditorTargetType annotation = clazz.getAnnotation(EditorTargetType.class);
-                customEditors.put(
-                    annotation.value(), (Class<? extends PropertyEditor>) clazz);
+                if (annotation != null) {
+                    customEditors.put(
+                        annotation.value(), (Class<? extends PropertyEditor>) clazz);
+                }
             }
-            customEditors.put(Date.class, DatePropertyEditor.class);
-            customEditors.put(Map.class, KvPropertyEditor.class);
         } catch (IOException e) {
             logger.error("反射加载自定义PropertyEditor失败", e);
         }
@@ -56,4 +57,5 @@ public class CustomEditorConfigurerConfig {
         customEditorConfigurer.setCustomEditors(customEditors);
         return customEditorConfigurer;
     }
+
 }

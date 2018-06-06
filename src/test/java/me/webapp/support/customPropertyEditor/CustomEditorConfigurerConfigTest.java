@@ -4,12 +4,17 @@ import me.webapp.sample.custompPopertyEditor.TestBean;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import java.util.Arrays;
 
 /**
  *
@@ -36,6 +41,8 @@ public class CustomEditorConfigurerConfigTest {
 
     @Test
     public void testDateEditorConfigurer() throws Exception {
+        String[] names = wac.getBeanDefinitionNames();
+        System.out.println(Arrays.toString(names));
         TestBean timeBean = (TestBean) wac.getBean("testBean");
         System.out.println(timeBean.getTime());
         System.out.println(timeBean.getParams());

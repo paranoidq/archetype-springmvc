@@ -96,6 +96,10 @@
         <param-value>classpath:config/applicationContext-all.xml</param-value>
     </context-param>
 
+    <!--配置RequestContextListener，使用RequestContextHolder-->
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
 
     <!-- 配置应用会话 -->
     <session-config>

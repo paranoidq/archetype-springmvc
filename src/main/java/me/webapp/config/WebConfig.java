@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
  * @since 1.0.0
  */
 @Configuration
+@EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
     private static final Logger logger = LoggerFactory.getLogger(WebConfig.class);
 //    RequestMappingHandlerAdapter
