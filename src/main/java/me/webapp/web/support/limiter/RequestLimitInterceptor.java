@@ -1,6 +1,6 @@
-package me.webapp.web.support.flowcontrol;
+package me.webapp.web.support.limiter;
 
-import me.webapp.web.support.flowcontrol.limiters.UnrestrainedLimiter;
+import me.webapp.web.support.limiter.limiters.UnrestrainedLimiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
  * 请求限流拦截器，具体的丽娜姐逻辑代理给{@link RequestLimiter#decide(RequestLimitInfo)}
  * 应用根据需求配置具体的实现类
  *
- * 例如：请求用户较少时，可以采用{@link me.webapp.web.support.flowcontrol.limiters.GuavaLimiter}
+ * 例如：请求用户较少时，可以采用{@link me.webapp.web.support.limiter.limiters.GuavaLimiter}
  * 而有大量独立的请求用户时，由于GuavaLimiter限流信息存储在JVM内存的Map中，势必难以负载，此时就可以考虑
- * 采用{@link me.webapp.web.support.flowcontrol.limiters.RedisLimiter}或其他自行实现的基于外部缓存的限流器
+ * 采用{@link me.webapp.web.support.limiter.limiters.RedisLimiter}或其他自行实现的基于外部缓存的限流器
  *
  *
  * @author paranoidq

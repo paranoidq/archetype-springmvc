@@ -1,7 +1,7 @@
-package me.webapp.web.support.flowcontrol.limiters;
+package me.webapp.web.support.limiter.limiters;
 
-import me.webapp.web.support.flowcontrol.RequestLimitInfo;
-import me.webapp.web.support.flowcontrol.RequestLimiter;
+import me.webapp.web.support.limiter.RequestLimitInfo;
+import me.webapp.web.support.limiter.RequestLimiter;
 
 /**
  * 拒绝所有流量

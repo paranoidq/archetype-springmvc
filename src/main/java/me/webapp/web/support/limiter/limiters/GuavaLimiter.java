@@ -1,8 +1,8 @@
-package me.webapp.web.support.flowcontrol.limiters;
+package me.webapp.web.support.limiter.limiters;
 
 import com.google.common.util.concurrent.RateLimiter;
-import me.webapp.web.support.flowcontrol.RequestLimitInfo;
-import me.webapp.web.support.flowcontrol.RequestLimiter;
+import me.webapp.web.support.limiter.RequestLimitInfo;
+import me.webapp.web.support.limiter.RequestLimiter;
 
 import java.util.concurrent.ConcurrentHashMap;
 

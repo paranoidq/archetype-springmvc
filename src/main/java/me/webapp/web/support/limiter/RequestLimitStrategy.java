@@ -1,4 +1,4 @@
-package me.webapp.web.support.flowcontrol;
+package me.webapp.web.support.limiter;
 
 /**
  *

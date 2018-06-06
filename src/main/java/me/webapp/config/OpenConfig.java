@@ -13,7 +13,7 @@ import org.springframework.context.annotation.PropertySource;
 public class OpenConfig {
 
 
-    @Value("${webapp.open.limit.limiterClass:me.webapp.web.support.flowController.limiters.UnrestrainedLimiter}")
+    @Value("${webapp.open.limit.limiterClass:me.webapp.web.support.limiter.limiters.UnrestrainedLimiter}")
     private String limiterClass;
 
     public String getLimiterClass() {

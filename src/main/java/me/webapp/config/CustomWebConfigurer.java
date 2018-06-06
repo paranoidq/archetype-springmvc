@@ -1,20 +1,16 @@
 package me.webapp.config;
 
-import me.webapp.web.support.flowcontrol.RequestLimitInterceptor;
-import me.webapp.web.support.flowcontrol.RequestLimiter;
-import me.webapp.web.support.flowcontrol.limiters.UnrestrainedLimiter;
+import me.webapp.web.support.limiter.RequestLimitInterceptor;
+import me.webapp.web.support.limiter.RequestLimiter;
+import me.webapp.web.support.limiter.limiters.UnrestrainedLimiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 /**
  * @author paranoidq
@@ -22,9 +18,8 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
  */
 @Configuration
 @EnableWebMvc
-public class WebConfig extends WebMvcConfigurerAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(WebConfig.class);
-//    RequestMappingHandlerAdapter
+public class CustomWebConfigurer extends WebMvcConfigurerAdapter {
+    private static final Logger logger = LoggerFactory.getLogger(CustomWebConfigurer.class);
 
     @Autowired
     private OpenConfig openConfig;
@@ -35,7 +30,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
      * @return
      */
     @Bean
-    public RequestLimitInterceptor flowController(){
+    public RequestLimitInterceptor limiter(){
         RequestLimiter limiter;
         String clazz = openConfig.getLimiterClass();
         try {
@@ -53,7 +48,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
 
-        registry.addInterceptor(flowController())
+        registry.addInterceptor(limiter())
             .addPathPatterns("/**");
     }
 

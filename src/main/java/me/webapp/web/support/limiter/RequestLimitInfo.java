@@ -1,4 +1,4 @@
-package me.webapp.web.support.flowcontrol;
+package me.webapp.web.support.limiter;
 
 import com.google.common.base.Objects;
 import me.webapp.web.common.WebConstants;

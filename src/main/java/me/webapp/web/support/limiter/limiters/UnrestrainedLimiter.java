@@ -1,8 +1,7 @@
-package me.webapp.web.support.flowcontrol.limiters;
+package me.webapp.web.support.limiter.limiters;
 
-import me.webapp.web.support.flowcontrol.RequestLimitInfo;
-import me.webapp.web.support.flowcontrol.RequestLimiter;
-import org.springframework.stereotype.Component;
+import me.webapp.web.support.limiter.RequestLimitInfo;
+import me.webapp.web.support.limiter.RequestLimiter;
 
 /**
  * 无限制
